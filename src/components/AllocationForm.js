@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext';
 
 const AllocationForm = (props) => {
     const { dispatch,remaining  } = useContext(AppContext);
-
+    const {currency} = useContext(AppContext);
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
@@ -17,6 +17,7 @@ const AllocationForm = (props) => {
                 setCost("");
                 return;
             }
+            
 
         const expense = {
             name: name,
@@ -59,11 +60,14 @@ const AllocationForm = (props) => {
                   <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
                         <option defaultValue value="Add" name="Add">Add</option>
                 <option value="Reduce" name="Reduce">Reduce</option>
+                
                   </select>
-
+                  <span>{currency}</span>
                     <input
+                    
                         required='required'
                         type='number'
+                        step = "10"
                         id='cost'
                         value={cost}
                         style={{ marginLeft: '2rem' , size: 10}}
